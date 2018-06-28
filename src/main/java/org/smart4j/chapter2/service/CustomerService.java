@@ -14,25 +14,25 @@ import java.util.Properties;
 
 public class CustomerService {
 
-    private static final String DRIVER;
-    private static final String URL;
-    private static final String USERNAME;
-    private static final String PASSWORD;
+//    private static final String DRIVER;
+//    private static final String URL;
+//    private static final String USERNAME;
+//    private static final String PASSWORD;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
-    static {
-        Properties conf = PropsUtil.loadProps("config.properties");
-        DRIVER = conf.getProperty("jdbc.driver");
-        URL = conf.getProperty("jdbc.url");
-        USERNAME = conf.getProperty("jdbc.username");
-        PASSWORD = conf.getProperty("jdbc.password");
-
-        try {
-            Class.forName(DRIVER);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("can not load jdbc driver", e);
-        }
-    }
+//    static {
+//        Properties conf = PropsUtil.loadProps("config.properties");
+//        DRIVER = conf.getProperty("jdbc.driver");
+//        URL = conf.getProperty("jdbc.url");
+//        USERNAME = conf.getProperty("jdbc.username");
+//        PASSWORD = conf.getProperty("jdbc.password");
+//
+//        try {
+//            Class.forName(DRIVER);
+//        } catch (ClassNotFoundException e) {
+//            LOGGER.error("can not load jdbc driver", e);
+//        }
+//    }
 
     public List<Customer> getCustomerList() {
         Connection conn = null;
