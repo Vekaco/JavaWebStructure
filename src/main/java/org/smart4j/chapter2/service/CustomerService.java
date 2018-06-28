@@ -35,12 +35,12 @@ public class CustomerService {
 //    }
 
     public List<Customer> getCustomerList() {
-        Connection conn = null;
-
-        try {
+//        Connection conn = null;
+//
+//        try {
             List<Customer> customerList = new ArrayList<Customer>();
             String sql = "select * from customer";
-            conn = DatabaseHelper.getConnection();//DriverManager.getConnection(URL, USERNAME, PASSWORD);
+//            conn = DatabaseHelper.getConnection();//DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
 //            PreparedStatement stmt = conn.prepareCall(sql);
 //            ResultSet rs = stmt.executeQuery();
@@ -59,14 +59,14 @@ public class CustomerService {
 //            }
 //
 //            return customerList;
-            return DatabaseHelper.queryEntityList(Customer.class, conn, sql);
+            return DatabaseHelper.queryEntityList(Customer.class, sql);
 
         }
 //        catch (SQLException e) {
 //            LOGGER.error("execute sql failure", e);
 //        }
-        finally {
-            DatabaseHelper.closeConnection(conn);
+//        finally {
+//            DatabaseHelper.closeConnection();
 //            if(conn != null) {
 //                try {
 //                    conn.close();
@@ -74,14 +74,19 @@ public class CustomerService {
 //                    LOGGER.error("close connection failure", e);
 //                }
 //            }
-        }
+//        }
 
 
         //return null;
-    }
+//    }
 
     public Customer getCustomer(long id) {
-        return null;
+
+        String sql = "select * from customer where id=?";
+
+        Customer customer = DatabaseHelper.queryEntity(Customer.class, sql, id);
+
+        return customer;
     }
 
     public boolean createCustomer(Map<String,Object> fieldMap){
