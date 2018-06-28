@@ -2,6 +2,7 @@ package org.smart4j.chapter2.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.smart4j.chapter2.helper.DatabaseHelper;
 import org.smart4j.chapter2.model.Customer;
 import org.smart4j.chapter2.util.PropsUtil;
 
@@ -39,7 +40,7 @@ public class CustomerService {
         try {
             List<Customer> customerList = new ArrayList<Customer>();
             String sql = "select * from customer";
-            conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            conn = DatabaseHelper.getConnection();//DriverManager.getConnection(URL, USERNAME, PASSWORD);
             PreparedStatement stmt = conn.prepareCall(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -62,13 +63,14 @@ public class CustomerService {
         } catch (SQLException e) {
             LOGGER.error("execute sql failure", e);
         } finally {
-            if(conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    LOGGER.error("close connection failure", e);
-                }
-            }
+            DatabaseHelper.closeConnection(conn);
+//            if(conn != null) {
+//                try {
+//                    conn.close();
+//                } catch (SQLException e) {
+//                    LOGGER.error("close connection failure", e);
+//                }
+//            }
         }
 
 
