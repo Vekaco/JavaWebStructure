@@ -41,28 +41,31 @@ public class CustomerService {
             List<Customer> customerList = new ArrayList<Customer>();
             String sql = "select * from customer";
             conn = DatabaseHelper.getConnection();//DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            PreparedStatement stmt = conn.prepareCall(sql);
-            ResultSet rs = stmt.executeQuery();
 
-            while(rs.next()) {
-                Customer customer = new Customer();
+//            PreparedStatement stmt = conn.prepareCall(sql);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while(rs.next()) {
+//                Customer customer = new Customer();
+//
+//                customer.setId(rs.getLong("id"));
+//                customer.setName(rs.getString("name"));
+//                customer.setContact(rs.getString("contact"));
+//                customer.setTelephone(rs.getString("telephone"));
+//                customer.setEmail(rs.getString("email"));
+//                customer.setRemark(rs.getString("remark"));
+//
+//                customerList.add(customer);
+//            }
+//
+//            return customerList;
+            return DatabaseHelper.queryEntityList(Customer.class, conn, sql);
 
-                customer.setId(rs.getLong("id"));
-                customer.setName(rs.getString("name"));
-                customer.setContact(rs.getString("contact"));
-                customer.setTelephone(rs.getString("telephone"));
-                customer.setEmail(rs.getString("email"));
-                customer.setRemark(rs.getString("remark"));
-
-                customerList.add(customer);
-            }
-
-            return customerList;
-
-
-        } catch (SQLException e) {
-            LOGGER.error("execute sql failure", e);
-        } finally {
+        }
+//        catch (SQLException e) {
+//            LOGGER.error("execute sql failure", e);
+//        }
+        finally {
             DatabaseHelper.closeConnection(conn);
 //            if(conn != null) {
 //                try {
@@ -74,7 +77,7 @@ public class CustomerService {
         }
 
 
-        return null;
+        //return null;
     }
 
     public Customer getCustomer(long id) {
