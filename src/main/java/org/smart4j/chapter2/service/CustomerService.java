@@ -89,15 +89,31 @@ public class CustomerService {
         return customer;
     }
 
+    /**
+     * 创建客户
+     * @param fieldMap
+     * @return
+     */
     public boolean createCustomer(Map<String,Object> fieldMap){
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
 
+    /**
+     * 更新客户
+     * @param id
+     * @param fieldMap
+     * @return
+     */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap){
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
 
+    /**
+     * 删除客户
+     * @param id
+     * @return
+     */
     public boolean deleteCustomer(long id){
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class, id);
     }
 }
